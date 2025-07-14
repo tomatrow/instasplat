@@ -6,7 +6,11 @@ settings:
 
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      svelte-language-server:
+        specifier: ^0.17.16
+        version: 0.17.16(picomatch@4.0.2)
 
   packages/app:
     dependencies:

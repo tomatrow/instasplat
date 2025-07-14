@@ -15,5 +15,8 @@
 		"onlyBuiltDependencies": [
 			"esbuild"
 		]
+	},
+	"devDependencies": {
+		"svelte-language-server": "^0.17.16"
 	}
 }
