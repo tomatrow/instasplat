@@ -1,0 +1,19 @@
+{
+	"name": "coffeefilter",
+	"version": "0.0.0",
+	"description": "yelp but in 3D for coffeeshops only",
+	"scripts": {
+		"aider": "./scripts/aider.fish",
+		"ply_to_splat": "./scripts/ply_to_splat/start.fish",
+		"start": "./scripts/start.fish"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"packageManager": "pnpm@9.14.4",
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"esbuild"
+		]
+	}
+}
