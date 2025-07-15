@@ -1,16 +1,7 @@
 <script lang="ts">
-	let places = $state<Record<string, any>[]>([]);
+	import { getPlaces } from "./places.remote"
 
-	async function load() {
-		const response = await fetch('http://localhost:3000/api/v1/places');
-		places = await response.json();
-	}
-
-	$effect(() => {
-		load();
-	});
-
-	$inspect(places);
+	let places = $derived(await getPlaces())
 </script>
 
 <h1>Welcome to SvelteKit</h1>
