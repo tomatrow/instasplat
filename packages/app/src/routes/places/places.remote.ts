@@ -2,17 +2,24 @@ import { PUBLIC_API_BASE_URL } from "$env/static/public"
 import { query, prerender, command, getRequestEvent } from "$app/server"
 
 interface PlaceData {
-	id: number
 	name?: string | null
 	address?: string | null
-	latitude?: number | null
-	longitude?: number | null
+	/** decimal string */
+	latitude?: string | null
+	/** decimal string */
+	longitude?: string | null
 	description?: string | null
 	phone?: string | null
 	website?: string | null
 	hours?: string | null
+	/** ISO 8601 string */
 	created_at: string
+	/** ISO 8601 string */
 	updated_at: string
+}
+
+interface Place extends PlaceData {
+	id: number
 }
 
 export const getPlaces = query(async () => {
@@ -22,7 +29,7 @@ export const getPlaces = query(async () => {
 		throw new Error(`Failed to fetch places: ${response.statusText}`)
 	}
 
-	const places: PlaceData[] = await response.json()
+	const places: Place[] = await response.json()
 
 	return places
 })
@@ -52,7 +59,10 @@ export const getPlacesPrerendered = prerender(async () => {
 	if (!response.ok) {
 		throw new Error(`Failed to fetch places: ${response.statusText}`)
 	}
-	return await response.json()
+
+	const places: Place[] = await response.json()
+
+	return places
 })
 
 export const getPlace = query("unchecked", async (id: number) => {
@@ -61,7 +71,10 @@ export const getPlace = query("unchecked", async (id: number) => {
 	if (!response.ok) {
 		throw new Error(`Failed to fetch place: ${response.statusText}`)
 	}
-	return await response.json()
+
+	const place: Place = await response.json()
+
+	return place
 })
 
 export const addPlace = command("unchecked", async (placeData: PlaceData) => {
