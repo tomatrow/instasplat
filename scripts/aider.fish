@@ -6,4 +6,5 @@ uv run \
   --with git+https://github.com/quinlanjager/aider@feature/litellm-mcp \
   --with google-cloud-aiplatform \
   '/Users/ajcaldwell/Library/Application Support/Nova/Extensions/dev.ajcaldwell.aider/nova-aider.py' \
-  --config .aider.conf.yaml
+  --config .aider.conf.yaml \
+  --mcp-servers '{"mcpServers":{"svelte-llm":{ "command": "npx", "args": ["mcp-remote", "https://svelte-llm.khromov.se/mcp/mcp"] },"playwright": { "command": "npx", "args": ["@playwright/mcp@latest"] }}}'
