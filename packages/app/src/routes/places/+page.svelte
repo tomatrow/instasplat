@@ -7,42 +7,48 @@
 
 <h1>Places</h1>
 
-<table>
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Address</th>
-			<th>Description</th>
-			<th>Phone</th>
-			<th>Website</th>
-			<th>Hours</th>
-			<th>Coordinates</th>
-			<th><button onclick={() => dialog.show()}>Add Place</button></th>
-		</tr>
-	</thead>
-	<tbody>
-		{#each await places as place (place.id)}
+<figure>
+	<table>
+		<thead>
 			<tr>
-				<td>{place.name}</td>
-				<td>{place.address}</td>
-				<td>{place.description}</td>
-				<td>{place.phone}</td>
-				<td>
-					{#if place.website}
-						<a href={place.website} target="_blank">site</a>
-					{/if}
-				</td>
-				<td>{place.hours}</td>
-				<td>
-					{#if place.latitude && place.longitude}
-						{place.latitude}, {place.longitude}
-					{/if}
-				</td>
-				<td><button onclick={() => deletePlace(place.id)}>Delete</button> </td>
+				<th>Name</th>
+				<th>Website</th>
+				<th>Phone</th>
+				<th>Directions</th>
+				<th><button onclick={() => dialog.show()}>Add Place</button></th>
 			</tr>
-		{/each}
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			{#each await places as place (place.id)}
+				<tr>
+					<td>{place.name}</td>
+					<td>
+						{#if place.website}
+							<a class="button" href={place.website} target="_blank">🌎</a>
+						{/if}
+					</td>
+					<td>
+						{#if place.phone}
+							<a class="button" href="tel://{place.phone}">📞</a>
+						{/if}
+					</td>
+					<td>
+						{#if place.address}
+							<a
+								class="button"
+								href="https://maps.apple.com/?daddr={encodeURIComponent(place.address)}"
+								target="_blank">🧭</a
+							>
+						{/if}
+					</td>
+					<td>
+						<button onclick={() => deletePlace(place.id)}>Delete</button>
+					</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+</figure>
 
 <dialog bind:this={dialog}>
 	<h2>New Place</h2>
