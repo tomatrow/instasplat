@@ -2,14 +2,17 @@ import { PUBLIC_API_BASE_URL } from "$env/static/public"
 import { query, prerender, command, getRequestEvent } from "$app/server"
 
 interface PlaceData {
-	name: string
-	address?: string
-	latitude?: number
-	longitude?: number
-	description?: string
-	phone?: string
-	website?: string
-	hours?: string
+	id: number
+	name?: string | null
+	address?: string | null
+	latitude?: number | null
+	longitude?: number | null
+	description?: string | null
+	phone?: string | null
+	website?: string | null
+	hours?: string | null
+	created_at: string
+	updated_at: string
 }
 
 export const getPlaces = query(async () => {
