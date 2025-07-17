@@ -1,9 +1,9 @@
 {
-	"name": "coffeefilter",
+	"name": "instasplat",
 	"version": "0.0.0",
-	"description": "yelp but in 3D for coffeeshops only",
+	"description": "instragram but with splats",
 	"scripts": {
-		"aider": "./scripts/aider.fish",
+		"aider": "./scripts/aider/start.fish",
 		"ply_to_splat": "./scripts/ply_to_splat/start.fish",
 		"start": "./scripts/start.fish"
 	},

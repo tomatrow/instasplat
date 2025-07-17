@@ -484,7 +484,7 @@ packages:
 
   '@sveltejs/kit@https://pkg.pr.new/@sveltejs/kit@13986':
     resolution: {tarball: https://pkg.pr.new/@sveltejs/kit@13986}
-    version: 2.22.5
+    version: 2.23.0
     engines: {node: '>=18.13'}
     hasBin: true
     peerDependencies:
