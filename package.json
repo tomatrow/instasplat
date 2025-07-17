@@ -5,6 +5,7 @@
 	"scripts": {
 		"aider": "./scripts/aider/start.fish",
 		"ply_to_splat": "./scripts/ply_to_splat/start.fish",
+		"upkeep": "./scripts/upkeep.fish",
 		"start": "./scripts/start.fish"
 	},
 	"keywords": [],
