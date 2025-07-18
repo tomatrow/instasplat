@@ -1,7 +1,7 @@
 {
 	"name": "instasplat",
 	"version": "0.0.0",
-	"description": "instragram but with splats",
+	"description": "Instagram but with splats",
 	"scripts": {
 		"aider": "./scripts/aider/start.fish",
 		"ply_to_splat": "./scripts/ply_to_splat/start.fish",
