@@ -5,12 +5,21 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
-# Rails.application.config.middleware.insert_before 0, Rack::Cors do
-#   allow do
-#     origins "example.com"
-#
-#     resource "*",
-#       headers: :any,
-#       methods: [:get, :post, :put, :patch, :delete, :options, :head]
-#   end
-# end
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    # Use environment variable or fallback to localhost for development
+    trusted_origins = if Rails.env.development?
+      ["http://localhost:5173", "http://localhost:3001", "http://localhost:3000"]
+    elsif Rails.env.production?
+      ENV['TRUSTED_ORIGINS']&.split(',') || []
+    else
+      []
+    end
+    
+    origins trusted_origins
+    resource "*",
+      headers: :any,
+      methods: %i[get post put patch delete options head],
+      credentials: true
+  end
+end

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { login, logout, loginForm, register, registerForm, type User } from "./auth.remote"
+	import { login, logout, register, getCurrentUser, type User } from "./auth.remote"
 
 	let email_address = $state("")
 	let password = $state("")
@@ -9,6 +9,19 @@
 	let message = $state("")
 	let currentUser = $state<User>()
 	let isLoading = $state(false)
+
+	async function loadUser() {
+		try {
+			const response = await getCurrentUser()
+			currentUser = response.user
+		} catch (error) {
+			console.error(error)
+		}
+	}
+
+	$effect(() => {
+		loadUser()
+	})
 
 	async function handleLogin() {
 		if (isLoading) return
@@ -117,21 +130,6 @@
 </section>
 
 <section>
-	<h2>Login with Form Action</h2>
-	<form {...loginForm}>
-		<div>
-			<label for="form-email">Email:</label>
-			<input id="form-email" name="email_address" type="email" required disabled={isLoading} />
-		</div>
-		<div>
-			<label for="form-password">Password:</label>
-			<input id="form-password" name="password" type="password" required disabled={isLoading} />
-		</div>
-		<button type="submit" disabled={isLoading}>Login (Form)</button>
-	</form>
-</section>
-
-<section>
 	<h2>Register with JavaScript</h2>
 	<form
 		onsubmit={(e) => {
@@ -176,51 +174,8 @@
 </section>
 
 <section>
-	<h2>Register with Form Action</h2>
-	<form {...registerForm}>
-		<div>
-			<label for="form-register-email">Email:</label>
-			<input
-				id="form-register-email"
-				name="email_address"
-				type="email"
-				required
-				disabled={isLoading}
-			/>
-		</div>
-		<div>
-			<label for="form-register-password">Password:</label>
-			<input
-				id="form-register-password"
-				name="password"
-				type="password"
-				required
-				disabled={isLoading}
-			/>
-		</div>
-		<div>
-			<label for="form-register-password-confirmation">Confirm Password:</label>
-			<input
-				id="form-register-password-confirmation"
-				name="password_confirmation"
-				type="password"
-				required
-				disabled={isLoading}
-			/>
-		</div>
-		<button type="submit" disabled={isLoading}>Register (Form)</button>
-	</form>
-</section>
-
-<section>
 	<h2>Logout</h2>
 	<button onclick={handleLogout} disabled={isLoading || !currentUser}>
 		{isLoading ? "Logging out..." : "Logout"}
 	</button>
-</section>
-
-<section>
-	<h2>Test Protected API Call</h2>
-	<p>Try accessing places after logging in to test if session cookies work:</p>
-	<a href="/places">Go to Places</a>
 </section>

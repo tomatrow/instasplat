@@ -23,7 +23,9 @@ export interface Place extends PlaceData {
 }
 
 export const getPlaces = query(async () => {
-	const response = await fetch(`${PUBLIC_API_BASE_URL}/places`)
+	const response = await fetch(`${PUBLIC_API_BASE_URL}/places`, {
+		credentials: "include"
+	})
 	if (!response.ok) throw new Error(`Failed to fetch places: ${response.statusText}`)
 
 	const places: Place[] = await response.json()
@@ -32,7 +34,10 @@ export const getPlaces = query(async () => {
 })
 
 export const deletePlace = command("unchecked", async (id: number) => {
-	const response = await fetch(`${PUBLIC_API_BASE_URL}/places/${id}`, { method: "DELETE" })
+	const response = await fetch(`${PUBLIC_API_BASE_URL}/places/${id}`, { 
+		method: "DELETE",
+		credentials: "include"
+	})
 	if (!response.ok) throw new Error(`Failed to delete place: ${response.statusText}`)
 
 	// Rails typically returns 204 No Content for successful deletes,
@@ -47,7 +52,9 @@ export const deletePlace = command("unchecked", async (id: number) => {
 })
 
 export const getPlacesPrerendered = prerender(async () => {
-	const response = await fetch(`${PUBLIC_API_BASE_URL}/places`)
+	const response = await fetch(`${PUBLIC_API_BASE_URL}/places`, {
+		credentials: "include"
+	})
 	if (!response.ok) throw new Error(`Failed to fetch places: ${response.statusText}`)
 
 	const places: Place[] = await response.json()
@@ -56,7 +63,9 @@ export const getPlacesPrerendered = prerender(async () => {
 })
 
 export const getPlace = query("unchecked", async (id: number) => {
-	const response = await fetch(`${PUBLIC_API_BASE_URL}/places/${id}`)
+	const response = await fetch(`${PUBLIC_API_BASE_URL}/places/${id}`, {
+		credentials: "include"
+	})
 	if (!response.ok) throw new Error(`Failed to fetch place: ${response.statusText}`)
 
 	const place: Place = await response.json()
@@ -68,7 +77,8 @@ export const addPlace = command("unchecked", async (placeData: PlaceData) => {
 	const response = await fetch(`${PUBLIC_API_BASE_URL}/places`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ place: placeData })
+		body: JSON.stringify({ place: placeData }),
+		credentials: "include"
 	})
 	if (!response.ok) throw new Error(`Failed to create place: ${response.statusText}`)
 
@@ -94,7 +104,8 @@ export const addPlaceForm = form(async (form) => {
 	const response = await fetch(`${PUBLIC_API_BASE_URL}/places`, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ place })
+		body: JSON.stringify({ place }),
+		credentials: "include"
 	})
 	if (!response.ok) throw new Error(`Failed to create place: ${response.statusText}`)
 
