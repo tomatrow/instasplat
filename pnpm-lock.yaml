@@ -8,9 +8,9 @@ importers:
 
   .:
     devDependencies:
-      prettier-plugin-svelte:
-        specifier: ^3.4.0
-        version: 3.4.0(prettier@3.3.3)(svelte@4.2.20)
+      prettier:
+        specifier: ^3.6.2
+        version: 3.6.2
       svelte-language-server:
         specifier: ^0.17.16
         version: 0.17.16(picomatch@4.0.2)

@@ -18,7 +18,7 @@
 		]
 	},
 	"devDependencies": {
-		"prettier-plugin-svelte": "^3.4.0",
+		"prettier": "^3.6.2",
 		"svelte-language-server": "^0.17.16"
 	}
 }
