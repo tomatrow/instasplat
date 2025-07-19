@@ -38,7 +38,7 @@
 			title: "Coffee Shop Morning",
 			description:
 				"Captured this cozy corner of my favorite cafe. Love how the light streams through the window.",
-			splat_file_url: "/splats/table.spz",
+			splat_file_url: "/splats/andrew.spz",
 			view_count: 1247,
 			like_count: 89,
 			comment_count: 12,
@@ -112,10 +112,70 @@
 	]
 </script>
 
-<div {@attach splatViewer("/splats/table.spz")}></div>
+<section class="feed">
+	{#each posts as post (post.id)}
+		<article class="post">
+			<header class="post-header">
+				<div class="user-info">
+					<img
+						src={post.expand?.user?.avatar_url}
+						alt={post.expand?.user?.username}
+						class="avatar"
+					/>
+					<div class="user-details">
+						<span class="username">{post.expand?.user?.username}</span>
+						{#if post.location}
+							<span class="location">{post.location.name}</span>
+						{/if}
+					</div>
+				</div>
+				<button class="menu-btn">⋯</button>
+			</header>
+
+			<div class="splat-viewer" {@attach splatViewer(post.splat_file_url)}></div>
+
+			<div class="post-actions">
+				<div class="action-buttons">
+					<button class="action-btn {post.is_liked_by_current_user ? 'liked' : ''}">
+						{post.is_liked_by_current_user ? "❤️" : "🤍"}
+					</button>
+					<button class="action-btn">💬</button>
+					<button class="action-btn">📤</button>
+				</div>
+				<button class="bookmark-btn">🔖</button>
+			</div>
+
+			<div class="post-stats">
+				<span class="likes">{post.like_count} likes</span>
+				<span class="views">{post.view_count} views</span>
+			</div>
+
+			<div class="post-content">
+				<span class="username">{post.expand?.user?.username}</span>
+				<span class="caption">{post.title}</span>
+				{#if post.description}
+					<p class="description">{post.description}</p>
+				{/if}
+				{#if post.tags.length > 0}
+					<div class="tags">
+						{#each post.tags as tag (tag)}
+							<span class="tag">#{tag}</span>
+						{/each}
+					</div>
+				{/if}
+			</div>
+
+			{#if post.comment_count > 0}
+				<button class="view-comments">View all {post.comment_count} comments</button>
+			{/if}
+
+			<time class="post-time">{new Date(post.created_at).toLocaleDateString()}</time>
+		</article>
+	{/each}
+</section>
 
 <style>
-	div {
-		height: 500px;
+	.splat-viewer {
+		height: 400px;
 	}
 </style>
