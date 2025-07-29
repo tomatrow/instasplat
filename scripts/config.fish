@@ -20,5 +20,5 @@ end
 
 nvm use system
 nvm use 20
-srcenv .env.local
+
 
