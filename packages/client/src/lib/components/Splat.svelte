@@ -1,3 +1,5 @@
+<svelte:options runes={true} />
+
 <script lang="ts">
 	import type { Snippet } from "svelte"
 	import { Splat, SplatLoader } from "@pmndrs/vanilla"
@@ -22,7 +24,12 @@
 	const { renderer, camera } = useThrelte()
 	const loader = useLoader(SplatLoader, { args: [renderer] })
 
-	const splat = $derived(loader.load(src))
+	const splat = $derived.by(() => {
+		console.log({ src })
+		const promise = loader.load(src)
+		console.log({ promise })
+		return promise
+	})
 
 	let framesRendered = 0
 	const { start, stop } = useTask(
