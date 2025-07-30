@@ -2,13 +2,13 @@
 nixPkgs = ["nodejs", "pnpm"]
 
 [phases.install]
-cmd = "pnpm install --frozen-lockfile"
+cmd = "echo 'starting install phase' && pnpm install --frozen-lockfile && echo 'finished install phase'"
 
 [phases.build]
-cmd = "cd packages/app && pnpm run build"
+cmd = "echo 'starting build phase' && cd packages/app && echo 'in packages/app' && pnpm run build && echo 'finished build phase'"
 
 [start]
-cmd = "cd packages/app && node build"
+cmd = "echo 'start' && cd packages/app && echo 'in packages/app' && node build/index.js"
 
 [variables]
 NODE_ENV = "production"
