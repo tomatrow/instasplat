@@ -1,10 +1,9 @@
 [phases.setup]
-nixPkgs = ["nodejs", "corepack"]
+nixPkgs = ["nodejs", "pnpm"]
 aptPkgs = []
 
 [phases.install]
 cmds = [
-  "corepack enable",
   "pnpm install --frozen-lockfile"
 ]
 
@@ -13,3 +12,6 @@ cmds = ["pnpm run build"]
 
 [start]
 cmd = "node build"
+
+[variables]
+NODE_ENV = "production"
