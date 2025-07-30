@@ -2,7 +2,8 @@
 nixPkgs = ["nodejs_20", "pnpm_8"]
 
 [phases.install]
-cmd = "echo 'starting install phase' && pnpm install --frozen-lockfile && echo 'finished install phase'"
+cmds = ["npm install -g corepack", "corepack enable", "corepack prepare pnpm@8.15.9--activate", "pnpm install"]
+# cmd = "echo 'starting install phase' && pnpm install --frozen-lockfile && echo 'finished install phase'"
 
 [phases.build]
 cmd = "echo 'starting build phase' && cd packages/client && echo 'in packages/client' && pnpm run build && echo 'finished build phase'"
