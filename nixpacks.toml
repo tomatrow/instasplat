@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["nodejs_20", "pnpm"]
+nixPkgs = ["nodejs_20", "pnpm_8"]
 
 [phases.install]
 cmd = "echo 'starting install phase' && pnpm install --frozen-lockfile && echo 'finished install phase'"
