@@ -5,7 +5,7 @@ nixPkgs = ["nodejs", "pnpm"]
 cmd = "pnpm install --frozen-lockfile"
 
 [phases.build]
-cmd = "cd pacakges/app && pnpm run build"
+cmd = "cd packages/app && pnpm run build"
 
 [start]
 cmd = "cd packages/app && node build"
