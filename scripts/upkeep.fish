@@ -3,8 +3,8 @@
 source scripts/config.fish
 
 # grab latest simplecss and format
-curl -L https://unpkg.com/simpledotcss/simple.css | string replace --all 'body ' '.simple-root ' > packages/app/static/simple.css
-pnpx prettier --write packages/app/static/simple.css
+curl -L https://unpkg.com/simpledotcss/simple.css | string replace --all 'body ' '.simple-root ' > packages/client/static/simple.css
+pnpx prettier --write packages/client/static/simple.css
 
 # grab latest svelte llm context 
 curl https://svelte.dev/llms-small.txt > scripts/llms.txt/svelte.dev/llms-small.txt 
