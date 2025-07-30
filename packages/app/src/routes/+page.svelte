@@ -17,7 +17,7 @@
 		<svelte:boundary>
 			<div>
 				<Canvas>
-					<Scene url="/splats/bonsai-7k.splat" />
+					<Scene url="/splats/bonsai-7k-mini.splat" />
 				</Canvas>
 			</div>
 		</svelte:boundary>
